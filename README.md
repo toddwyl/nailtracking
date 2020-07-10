@@ -1,6 +1,6 @@
 ## Real-time Nail-Detection using Neural Networks (SSD) on Tensorflow.
 
-This repo is similar to the [handtracking](<https://github.com/victordibia/handtracking>). I train the nail detector using **MobileNetV1-FPN-SSD**, and the dataset I used is annotated by myself.
+This repo is similar to the [handtracking](<https://github.com/victordibia/handtracking>). I train the nail detector using **MobileNetV1-FPN-SSD**, and the dataset I used is annotated by laboratory member.
 
 Here is the nail detector in action and draw the line:
 
