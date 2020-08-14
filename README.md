@@ -43,10 +43,6 @@ I use the MobileNet-SSD first, but the nail is too tiny to detect. So we can see
 
 ## To do list:
 
-- [ ] Update the backbone to the MoblieNet-v3 or EfficientNet.
-
 - [ ] Try a New method to implement the CVPR workshop 2019 <[Nail Polish Try-On: Realtime Semantic Segmentation of Small Objects for Native and Browser Smartphone AR Applications](<https://arxiv.org/abs/1906.02222>)>
 
   ![1560172783755](README.assets/1560172783755.png)
-
-- [ ] Add the Handtracking and classify the gesture
