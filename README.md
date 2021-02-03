@@ -34,11 +34,6 @@ I use the MobileNet-SSD first, but the nail is too tiny to detect. So we can see
 
 ![1560173400082](README.assets/1560173400082.png)
 
-## Dataset Download
-
-[Google Drive](https://drive.google.com/file/d/1RCfKiL7IRYMFIKLjhffCywU-Mf-jySZz/view?usp=sharing)
-
-[BaiduYun password:pac6](https://pan.baidu.com/s/1sl4BTTE-N_nYQYns_AfGjg)
 
 
 ## To do list:
