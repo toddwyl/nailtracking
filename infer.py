@@ -2,11 +2,16 @@
 
 # import the necessary packages
 # from object_detection.utils import label_map_util
-import tensorflow as tf
+# import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import numpy as np
 import cv2
 from imutils.video import WebcamVideoStream
 import find_finger as ff
+tf.disable_v2_behavior()
+
+# Skin color binarization(convert the RGB channel to YCbCr and use inRange method to binarize)
+
 
 
 args = {
@@ -47,11 +52,11 @@ if __name__ == '__main__':
             classesTensor = model.get_tensor_by_name("detection_classes:0")
             numDetections = model.get_tensor_by_name("num_detections:0")
             drawboxes = []
-            # cap = cv2.VideoCapture(url)
-            vs = WebcamVideoStream(src=1)
-            vs.start()
+            vs = cv2.VideoCapture(0)
+            # vs = WebcamVideoStream(src=1)
+            # vs.start()
             while True:
-                frame = vs.read()
+                ret, frame = vs.read()
                 if frame is None:
                     continue
                 frame = cv2.flip(frame, 1)
@@ -125,7 +130,7 @@ if __name__ == '__main__':
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.75, (77, 255, 9), 2)
                 cv2.imshow("Output", output)
                 # cv2.waitKey(0)
-                if cv2.waitKey(1) & 0xFF == ord("q"):
+                if cv2.waitKey(1) == ord("q"):
                     cv2.destroyAllWindows()
                     break
 
