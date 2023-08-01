@@ -1,4 +1,4 @@
-imutils
 matplotlib
 numpy
 tensorflow
+opencv-python
