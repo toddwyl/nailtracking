@@ -25,7 +25,6 @@ def test_HSV(frame):
 
 def find_hand_old(frame):
     img = frame.copy()
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     YCrCb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2YCrCb)
     # YCrCb_frame = cv2.GaussianBlur(YCrCb_frame, (9, 9), 0)
     YCrCb_frame = cv2.GaussianBlur(YCrCb_frame, (3, 3), 0)
@@ -41,7 +40,7 @@ def find_hand_old(frame):
     bin_mask = cv2.dilate(bin_mask, kernel, iterations=5)
     res = cv2.bitwise_and(frame, frame, mask=bin_mask)
 
-    cv2.imshow("res_old", res)
+    # cv2.imshow("res_old", res)
 
     return img, bin_mask, res
 

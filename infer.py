@@ -6,7 +6,6 @@
 import tensorflow.compat.v1 as tf
 import numpy as np
 import cv2
-from imutils.video import WebcamVideoStream
 import find_finger as ff
 tf.disable_v2_behavior()
 
@@ -53,8 +52,8 @@ if __name__ == '__main__':
             numDetections = model.get_tensor_by_name("num_detections:0")
             drawboxes = []
             vs = cv2.VideoCapture(0)
-            # vs = WebcamVideoStream(src=1)
-            # vs.start()
+            vs.set(3, 640)
+            vs.set(4, 480)
             while True:
                 ret, frame = vs.read()
                 if frame is None:
@@ -134,4 +133,3 @@ if __name__ == '__main__':
                     cv2.destroyAllWindows()
                     break
 
-                    # vs.stop()
