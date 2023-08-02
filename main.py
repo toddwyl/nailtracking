@@ -12,12 +12,12 @@ args = {
     "model": "./model/export_model_008/frozen_inference_graph.pb",
     "labels": "./record/classes.pbtxt",
     "num_classes": 1,
-    "min_confidence": 0.6,
+    "min_confidence": 0.5,
     "class_model": "../model/class_model/p_class_model_1552620432_.h5"
 }
 
-COLORS = np.random.uniform(0, 255, size=(args["num_classes"], 3))
-# COLORS = [(255, 0, 0)] # Blue in BGR format
+# COLORS = np.random.uniform(0, 255, size=(args["num_classes"], 3))
+COLORS = [(255, 0, 0)] # Blue in BGR format
 
 
 def run_inference(sess, image, boxesTensor, scoresTensor, classesTensor, numDetections):
@@ -74,8 +74,6 @@ if __name__ == '__main__':
 
             drawboxes = []
             vs = cv2.VideoCapture(0)
-            vs.set(3, 320)
-            vs.set(4, 240)
 
             while True:
                 _, frame = vs.read()
@@ -91,25 +89,31 @@ if __name__ == '__main__':
 
                 boxes, scores, labels = run_inference(sess, image, boxesTensor, scoresTensor, classesTensor, numDetections)
                 boxnum, box_mid = process_results(boxes, scores, labels, H, W)
+                
+                # boxnum = numero de unhas detectadas
+                # box_mid = posicao da unha na imagem
+                # boxes = posicao de cada unha, array de 4, n
+                # labes = nao sei
+                # scores = acuracia de cada unha detectada
 
-                if box_mid == (0, 0):
-                    drawboxes.clear()
-                    cv2.putText(output, 'Nothing', (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (77, 255, 9), 2)
-                elif boxnum == 1:
-                    drawboxes.append(box_mid)
-                    if len(drawboxes) == 1:
-                        pp = drawboxes[0]
-                        cv2.circle(output, pp, 0, (0, 0, 0), thickness=3)
-                    if len(drawboxes) > 1:
-                        num_p = len(drawboxes)
-                        for i in range(1, num_p):
-                            pt1 = drawboxes[i - 1]
-                            pt2 = drawboxes[i]
-                            cv2.line(output, pt1, pt2, (0, 0, 0), 2, 2)
-                    cv2.putText(output, 'Point', (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (77, 255, 9), 2)
-                else:
-                    drawboxes.clear()
-                    cv2.putText(output, 'Nothing', (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (77, 255, 9), 2)
+                # if box_mid == (0, 0):
+                #     drawboxes.clear()
+                #     cv2.putText(output, 'Nothing', (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (77, 255, 9), 2)
+                # elif boxnum == 1:
+                #     drawboxes.append(box_mid)
+                #     if len(drawboxes) == 1:
+                #         pp = drawboxes[0]
+                #         cv2.circle(output, pp, 0, (0, 0, 0), thickness=3)
+                #     if len(drawboxes) > 1:
+                #         num_p = len(drawboxes)
+                #         for i in range(1, num_p):
+                #             pt1 = drawboxes[i - 1]
+                #             pt2 = drawboxes[i]
+                #             cv2.line(output, pt1, pt2, (0, 0, 0), 2, 2)
+                #     cv2.putText(output, 'Point', (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (77, 255, 9), 2)
+                # else:
+                #     drawboxes.clear()
+                #     # cv2.putText(output, 'Nothing', (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (77, 255, 9), 2)
                 cv2.imshow("Output", output)
                 
                 if cv2.waitKey(1) == ord("q"):
