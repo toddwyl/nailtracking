@@ -1,38 +1,47 @@
-## Real-time Nail-Detection using Neural Networks (SSD) on Tensorflow.
+# Paint your nails with TensorFlow & OpenCV
 
-This repo is similar to the [handtracking](<https://github.com/victordibia/handtracking>). I train the nail detector using **MobileNetV1-FPN-SSD**, and the dataset I used is annotated by laboratory member.
+This Python project is a handnail tracking application using TensorFlow and OpenCV. It uses a pre-trained object detection model to detect handnails in real-time from the camera (Webcam) video stream.
 
-Here is the nail detector in action and draw the line:
+<!-- ![Demo](demo.gif) -->
 
-![nail_draw](README.assets/nail_draw.gif)
+## Requirements
 
-The annotated samples like the below:
+- Python 3.x
+- TensorFlow
+- OpenCV
+- NumPy
 
-![1560172595651](README.assets/1560172595651.png)
+## Installation
 
-The overall process is divided into **3** steps:
+1. Clone the repository:
 
-- Histogram equalization
+```bash
+git clone https://github.com/your-username/repository-name.git
+cd repository-name
+```
 
-- Skin color binarization(convert the RGB channel to YCbCr and use inRange method to binarize)
+2. Install the dependencies:
 
-- MobileNet-SSD-FPN
+```bash
+pip install tensorflow opencv-python numpy
+```
 
-  ![1560172217358](README.assets/1560172217358.png)
+## Usage
 
+Run the `handnail_tracking.py` script to start the handnail tracking application:
 
-The **MobileNetV1-FPN-SSD** architecture may like this below:
+```bash
+python handnail_tracking.py
+```
 
-![ssd_fpn_nail](README.assets/ssd_fpn_nail.png)
+The application will begin capturing video from the camera and display the video frames with detected handnails in real-time. To exit the application, press the "q" key.
 
-I use the MobileNet-SSD first, but the nail is too tiny to detect. So we can see the **MobileNet-SSD-FPN** is pretty better than MobileNet-SSD.
+## Customization
 
-| **Method** | **mAP** | **mAP(large)** | **mAP(medium)** | **mAP(small)** | **mAP@0.50IOU** | **mAP@0.75IOU** |
-| ----------------- | ------------- | ------- | -------------- | --------------- | -------------- | ------------------- |
-| MobileNet-SSD | 45.20| 62.58| 48.14| 13.14| 75.79| 45.81|
-| MobileNet-SSD-FPN | 60.01| 75.03| 64.46| 29.25| 84.65| 71.85|
+If desired, you can adjust the parameters in the handnail_tracking.py file to suit your needs, such as the pre-trained model, colors used for the ellipses, and opacity.
 
-![1560173400082](README.assets/1560173400082.png)
+## Credits
 
+- The object detection model is based on the TensorFlow Object Detection API.
 
-
+- Handnail detection is inspired by [Wen YongLiang's Nail Tracking algorythm](https://github.com/toddwyl/nailtracking).
