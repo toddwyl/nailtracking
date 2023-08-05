@@ -10,6 +10,7 @@ This Python project is a handnail tracking application using TensorFlow and Open
 - TensorFlow
 - OpenCV
 - NumPy
+- Tkinter (for interface use)
 
 ## Installation
 
